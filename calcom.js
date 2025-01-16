@@ -4,12 +4,16 @@
     a.q.push(ar);
   };
   let d = C.document;
-  console.log(d)
   // Obtener el elemento <script> actual
-  let currentScript = d.currentScript || d.querySelector('script[src*="calcom.js"]');
+  let targetDiv = d.querySelector('#my-cal-inline.my-cal-inline');
 
-  // Obtener el valor del atributo 'link'
-  let link = currentScript.getAttribute('link');
+  // Obtener el valor del atributo 'src' del <div>
+  let link = targetDiv.getAttribute('src');
+  console.log('SUPER LINK: ', link);
+  // let currentScript = d.currentScript || d.querySelector('script[src*="calcom.js"]');
+
+  // // Obtener el valor del atributo 'link'
+  // let link = currentScript.getAttribute('link');
 
   C.Cal =
     C.Cal ||
@@ -37,7 +41,7 @@
       }
       p(cal, ar);
     };
-
+  debugger
   // Inicializar Cal con el namespace "15min"
   Cal("init", "15min", { origin: "https://cal.com" });
 
