@@ -1,12 +1,13 @@
 (function (C, A, L) {
+  alert('is inside')
   let p = function (a, ar) {
     a.q.push(ar);
   };
   let d = C.document;
-
+  console.log(d)
   // Obtener el elemento <script> actual
-  let currentScript = d.currentScript || d.querySelector('script[src*="helloWorld.js"]');
-  
+  let currentScript = d.currentScript || d.querySelector('script[src*="calcom.js"]');
+
   // Obtener el valor del atributo 'link'
   let link = currentScript.getAttribute('link');
 
@@ -36,15 +37,19 @@
       }
       p(cal, ar);
     };
-    
-  Cal("init", { origin: "https://app.cal.com" });
 
-  Cal("inline", {
+  // Inicializar Cal con el namespace "15min"
+  Cal("init", "15min", { origin: "https://cal.com" });
+
+  Cal.ns["15min"]("inline", {
     elementOrSelector: "#my-cal-inline",
+    config: { layout: "month_view" },
     calLink: link, // Usar el valor extraído
-    config: {
-      theme: "light",
-    },
   });
 
+  Cal.ns["15min"]("ui", {
+    styles: { branding: { brandColor: "#000000" } },
+    hideEventTypeDetails: false,
+    layout: "month_view",
+  });
 })(window, "https://app.cal.com/embed/embed.js", "init");
