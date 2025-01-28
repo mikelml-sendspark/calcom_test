@@ -1,11 +1,10 @@
 function extractDomainAndLink(url) {
-  // Utilizar una expresión regular para extraer el originDomain y el link
   const regex = /^https?:\/\/([^/]+)\/([^?]+)/;
   const match = url.match(regex);
 
   if (match) {
-    const originDomain = match[1]; // El dominio principal
-    const link = match[2];        // La parte del "link"
+    const originDomain = match[1];
+    const link = match[2];
     return { originDomain, link };
   } else {
     throw new Error("URL inválida");
@@ -49,12 +48,12 @@ function extractDomainAndLink(url) {
       p(cal, ar);
     };
 
-  Cal("init", "15min", { origin: `https://${url.originDomain}` });
+  Cal("init", "15min", { origin: `https://${url?.originDomain} || 'cal.com'`  });
 
   Cal.ns["15min"]("inline", {
     elementOrSelector: "#my-cal-inline",
     config: { layout: "month_view" },
-    calLink: url.link,
+    calLink: url?.link,
   });
 
   Cal.ns["15min"]("ui", {
