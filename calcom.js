@@ -1,4 +1,5 @@
 function extractDomainAndLink(url) {
+console.log("this is url: ", url)
   const regex = /^https?:\/\/([^/]+)\/([^?]+)/;
   const match = url.match(regex);
 
