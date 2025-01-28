@@ -1,16 +1,14 @@
-const extractDomainAndLink = (url) => {
-console.log("this is url: ", url)
+function extractDomainAndLink(url) {
+  // Utilizar una expresión regular para extraer el originDomain y el link
   const regex = /^https?:\/\/([^/]+)\/([^?]+)/;
   const match = url.match(regex);
-  debugger
-  if (match) {
-    const originDomain = match[1];
-    const link = match[2];
-    console.log("this is url2: ", { originDomain, link })
 
+  if (match) {
+    const originDomain = match[1]; // El dominio principal
+    const link = match[2];        // La parte del "link"
     return { originDomain, link };
   } else {
-    throw new Error("mega invalid invalid URL");
+    throw new Error("URL inválida");
   }
 }
 
@@ -22,7 +20,7 @@ console.log("this is url: ", url)
   let d = C.document;
   let targetDiv = d.querySelector('#my-cal-inline.my-cal-inline');
   let link = targetDiv.getAttribute('src');
-  let url = extractDomainAndLink(link)
+  const url = extractDomainAndLink(link)
 
   C.Cal =
     C.Cal ||
@@ -51,12 +49,12 @@ console.log("this is url: ", url)
       p(cal, ar);
     };
 
-  Cal("init", "15min", { origin: `https://${url?.originDomain} || 'cal.com'`  });
+  Cal("init", "15min", { origin: `https://${url.originDomain}` });
 
   Cal.ns["15min"]("inline", {
     elementOrSelector: "#my-cal-inline",
     config: { layout: "month_view" },
-    calLink: url?.link,
+    calLink: url.link,
   });
 
   Cal.ns["15min"]("ui", {
