@@ -7,7 +7,7 @@ function extractDomainAndLink(url) {
     const link = match[2];
     return { originDomain, link };
   } else {
-    throw new Error("URL inválida");
+    throw new Error("invalid URL");
   }
 }
 
