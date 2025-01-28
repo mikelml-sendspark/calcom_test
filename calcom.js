@@ -1,8 +1,8 @@
-function extractDomainAndLink(url) {
+const extractDomainAndLink = (url) => {
 console.log("this is url: ", url)
   const regex = /^https?:\/\/([^/]+)\/([^?]+)/;
   const match = url.match(regex);
-
+  debugger
   if (match) {
     const originDomain = match[1];
     const link = match[2];
@@ -10,7 +10,7 @@ console.log("this is url: ", url)
 
     return { originDomain, link };
   } else {
-    throw new Error("invalid URL");
+    throw new Error("mega invalid invalid URL");
   }
 }
 
