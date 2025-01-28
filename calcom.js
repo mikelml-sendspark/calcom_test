@@ -6,6 +6,8 @@ console.log("this is url: ", url)
   if (match) {
     const originDomain = match[1];
     const link = match[2];
+    console.log("this is url2: ", { originDomain, link })
+
     return { originDomain, link };
   } else {
     throw new Error("invalid URL");
@@ -20,7 +22,7 @@ console.log("this is url: ", url)
   let d = C.document;
   let targetDiv = d.querySelector('#my-cal-inline.my-cal-inline');
   let link = targetDiv.getAttribute('src');
-  const url = extractDomainAndLink(link)
+  let url = extractDomainAndLink(link)
 
   C.Cal =
     C.Cal ||
